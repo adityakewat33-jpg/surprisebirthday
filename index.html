@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Beautiful Journey Through Time | Happy Birthday ❤️</title>
+  
+  <meta name="description" content="A premium luxury interactive 3D birthday journey for my favorite person. An emotional story from childhood to today.">
+  <meta name="keywords" content="happy birthday, interactive birthday website, luxury, 3D cake, romantic letter, dream bubbles">
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles/glassmorphism.css">
+  <link rel="stylesheet" href="styles/main.css">
+  
+  <!-- Importmap for ES Modules Three.js -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+        "gsap": "https://esm.sh/gsap@3.12.2"
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Full-Page Particle Background -->
+  <canvas id="effects-canvas"></canvas>
+
+  <!-- Floating Music Player -->
+  <div class="music-player-fixed" id="music-player">
+    <div class="glass-card music-card">
+      <div class="disk-art" id="disk-art"></div>
+      <div class="music-controls">
+        <span class="music-title" id="music-title">Beautiful Soundscapes</span>
+        <span class="music-artist">Instrumental Harp</span>
+      </div>
+      <button class="play-pause-btn" id="play-pause-btn" aria-label="Play Music">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" id="play-icon">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" id="pause-icon" style="display: none;">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="section hero-section" id="hero">
+    <div class="hero-text-top">
+      <h1 class="reveal-fade">Happy Birthday <span class="heart-glow">❤️</span></h1>
+      <p class="sub reveal-fade">My Favorite Person</p>
+    </div>
+    
+    <!-- 3D Three.js Cake Render Box -->
+    <div class="cake-container-3d">
+      <canvas id="cake-canvas" class="cake-canvas"></canvas>
+      <span class="cake-instructions">Hold & Drag to Rotate</span>
+    </div>
+    
+    <div class="hero-action">
+      <a href="#timeline" class="glass-btn glass-btn-pink reveal-fade" id="begin-journey-btn">Begin Our Journey</a>
+    </div>
+  </section>
+
+  <!-- SECTION 1: TIMELINE -->
+  <section class="section" id="timeline">
+    <div class="container">
+      <div class="section-title">
+        <p class="cursive-sub">Chronicle of Us</p>
+        <h2>Our Journey</h2>
+      </div>
+      
+      <div class="timeline-wrapper">
+        <div class="timeline-line"></div>
+        <div class="timeline-line-progress" id="timeline-progress"></div>
+        
+        <!-- Milestone 1 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content-box">
+            <div class="glass-card-pink timeline-card reveal-fade">
+              <span class="timeline-date">The Day We Met Online</span>
+              <h3>A Spark Across the Network</h3>
+              <p>In a world of billions, our paths randomly crossed online. What started as a simple comment turned into an instant spark that set our hearts on a new course.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Milestone 2 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content-box">
+            <div class="glass-card-gold timeline-card reveal-fade">
+              <span class="timeline-date">Our First Conversations</span>
+              <h3>Talking For Hours</h3>
+              <p>From typing paragraphs to late-night messages, we shared our thoughts, childhood memories, and fears. Every message felt like finding a missing piece of my soul.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Milestone 3 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content-box">
+            <div class="glass-card-pink timeline-card reveal-fade">
+              <span class="timeline-date">The Moments We Laughed</span>
+              <h3>Shared Joy</h3>
+              <p>Even though we couldn't hear each other at first, our jokes and stories filled our screens with smiles. Laughter became the bridge that closed the miles between us.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Milestone 4 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content-box">
+            <div class="glass-card-gold timeline-card reveal-fade">
+              <span class="timeline-date">Late-Night Calls</span>
+              <h3>Hearing Your Voice</h3>
+              <p>The first time I heard you laugh. Listening to your voice fall asleep on the call became my favorite bedtime routine, making the distance fade into whispers.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Milestone 5 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content-box">
+            <div class="glass-card-pink timeline-card reveal-fade">
+              <span class="timeline-date">Special Memories</span>
+              <h3>Screenshots of Love</h3>
+              <p>Virtual date nights, watching movies together simultaneously, and taking screenshots of our video calls. These digital frames became my most precious treasures.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 6 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content-box">
+            <div class="glass-card-gold timeline-card reveal-fade">
+              <span class="timeline-date">Supporting Each Other</span>
+              <h3>Our Constant Anchor</h3>
+              <p>Through hard days, stress, and quiet tears, we have been each other's solid ground. Holding you close through our screens, sharing strength when it was needed most.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 7 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content-box">
+            <div class="glass-card-pink timeline-card reveal-fade">
+              <span class="timeline-date">The Future We're Waiting For</span>
+              <h3>Until We Finally Meet</h3>
+              <p>Every single day of waiting is a day closer to you. I hold on to the promise of the day we finally stand side by side, holding hands in the real world.</p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: CHILDHOOD MEMORIES -->
+  <section class="section" id="childhood">
+    <div class="container">
+      <div class="section-title">
+        <p class="cursive-sub">Before I Knew You</p>
+        <h2>Childhood Memories</h2>
+      </div>
+      
+      <div class="photo-grid-4">
+        <!-- Photo 1 -->
+        <div class="memory-card-wrapper">
+          <div class="glass-card memory-card-3d reveal-fade" data-index="1" data-title="Childhood Photo 1" data-caption="Giggling in the sun, a little bundle of pure joy and endless wonder.">
+            <div class="photo-placeholder">
+              <img src="assets/images/childhood1.jpg" alt="Childhood Photo 1" loading="lazy">
+              <span class="photo-status">Placeholder 1</span>
+            </div>
+            <div class="memory-caption">
+              <h4>Childhood Photo 1</h4>
+              <p>Pure Sweetness</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Photo 2 -->
+        <div class="memory-card-wrapper">
+          <div class="glass-card memory-card-3d reveal-fade" data-index="2" data-title="Childhood Photo 2" data-caption="Endless playtime, curiosity leading every step toward the world.">
+            <div class="photo-placeholder">
+              <img src="assets/images/childhood2.jpg" alt="Childhood Photo 2" loading="lazy">
+              <span class="photo-status">Placeholder 2</span>
+            </div>
+            <div class="memory-caption">
+              <h4>Childhood Photo 2</h4>
+              <p>Curious Wonder</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Photo 3 -->
+        <div class="memory-card-wrapper">
+          <div class="glass-card memory-card-3d reveal-fade" data-index="3" data-title="Childhood Photo 3" data-caption="The brightest smile, radiating warmth even at a young age.">
+            <div class="photo-placeholder">
+              <img src="assets/images/childhood3.jpg" alt="Childhood Photo 3" loading="lazy">
+              <span class="photo-status">Placeholder 3</span>
+            </div>
+            <div class="memory-caption">
+              <h4>Childhood Photo 3</h4>
+              <p>Bright Little Eyes</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Photo 4 -->
+        <div class="memory-card-wrapper">
+          <div class="glass-card memory-card-3d reveal-fade" data-index="4" data-title="Childhood Photo 4" data-caption="Growing up, step-by-step, dreaming of a beautiful future ahead.">
+            <div class="photo-placeholder">
+              <img src="assets/images/childhood4.jpg" alt="Childhood Photo 4" loading="lazy">
+              <span class="photo-status">Placeholder 4</span>
+            </div>
+            <div class="memory-caption">
+              <h4>Childhood Photo 4</h4>
+              <p>Dreamy Child</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: BEAUTIFUL TODAY -->
+  <section class="section" id="today">
+    <div class="container">
+      <div class="section-title">
+        <p class="cursive-sub">Shining Brighter Than Ever</p>
+        <h2>Beautiful Today</h2>
+      </div>
+      
+      <div class="today-alternating-layout">
+        <!-- Row 1 -->
+        <div class="today-row">
+          <div class="today-image-wrapper">
+            <div class="today-image-card reveal-fade" data-index="1" data-title="Current Photo 1" data-caption="Radiant smile, lighting up the whole world.">
+              <img src="assets/images/current1.jpg" alt="Current Photo 1" loading="lazy">
+              <span class="photo-status">Current Photo 1 Placeholder</span>
+            </div>
+          </div>
+          <div class="today-info-box reveal-fade">
+            <h3>Current Photo 1</h3>
+            <p>Every single day, you grow more beautiful in my eyes. It's not just how you look, but the sheer grace and kindness you bring wherever you go.</p>
+          </div>
+        </div>
+        
+        <!-- Row 2 -->
+        <div class="today-row">
+          <div class="today-image-wrapper">
+            <div class="today-image-card reveal-fade" data-index="2" data-title="Current Photo 2" data-caption="Elegant elegance, capturing hearts effortlessly.">
+              <img src="assets/images/current2.jpg" alt="Current Photo 2" loading="lazy">
+              <span class="photo-status">Current Photo 2 Placeholder</span>
+            </div>
+          </div>
+          <div class="today-info-box reveal-fade">
+            <h3>Current Photo 2</h3>
+            <p>Your laugh is my absolute favorite song. The way you tilt your head when you smile is a memory I keep on repeat, cherishing every second.</p>
+          </div>
+        </div>
+        
+        <!-- Row 3 -->
+        <div class="today-row">
+          <div class="today-image-wrapper">
+            <div class="today-image-card reveal-fade" data-index="3" data-title="Current Photo 3" data-caption="Soft dreaminess, lost in a world of happiness.">
+              <img src="assets/images/current3.jpg" alt="Current Photo 3" loading="lazy">
+              <span class="photo-status">Current Photo 3 Placeholder</span>
+            </div>
+          </div>
+          <div class="today-info-box reveal-fade">
+            <h3>Current Photo 3</h3>
+            <p>There's a quiet strength in you that inspires me every single day. Seeing you chase your dreams with such passion is a beautiful sight.</p>
+          </div>
+        </div>
+        
+        <!-- Row 4 -->
+        <div class="today-row">
+          <div class="today-image-wrapper">
+            <div class="today-image-card reveal-fade" data-index="4" data-title="Current Photo 4" data-caption="Pure confidence, shining with your own unique light.">
+              <img src="assets/images/current4.jpg" alt="Current Photo 4" loading="lazy">
+              <span class="photo-status">Current Photo 4 Placeholder</span>
+            </div>
+          </div>
+          <div class="today-info-box reveal-fade">
+            <h3>Current Photo 4</h3>
+            <p>You have this unique magic where you make everything around you feel calm and beautiful. Just a simple touch from you eases all my worries.</p>
+          </div>
+        </div>
+        
+        <!-- Row 5 -->
+        <div class="today-row">
+          <div class="today-image-wrapper">
+            <div class="today-image-card reveal-fade" data-index="5" data-title="Current Photo 5" data-caption="Gentle charm, a quiet moment of absolute peace.">
+              <img src="assets/images/current5.jpg" alt="Current Photo 5" loading="lazy">
+              <span class="photo-status">Current Photo 5 Placeholder</span>
+            </div>
+          </div>
+          <div class="today-info-box reveal-fade">
+            <h3>Current Photo 5</h3>
+            <p>In a world of noise, you are my serene sanctuary. Your kindness to everyone around you shows just how precious and pure your heart really is.</p>
+          </div>
+        </div>
+        
+        <!-- Row 6 -->
+        <div class="today-row">
+          <div class="today-image-wrapper">
+            <div class="today-image-card reveal-fade" data-index="6" data-title="Current Photo 6" data-caption="Vibrant happiness, enjoying the beauty of today.">
+              <img src="assets/images/current6.jpg" alt="Current Photo 6" loading="lazy">
+              <span class="photo-status">Current Photo 6 Placeholder</span>
+            </div>
+          </div>
+          <div class="today-info-box reveal-fade">
+            <h3>Current Photo 6</h3>
+            <p>Today is all about you—celebrating the wonderful person you have grown into, and looking forward to all the tomorrows we get to share together.</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: REASONS WHY I ADMIRE YOU -->
+  <section class="section" id="reasons">
+    <div class="container">
+      <div class="section-title">
+        <p class="cursive-sub">What Makes You Special</p>
+        <h2>Reasons I Admire You</h2>
+      </div>
+      
+      <div class="reasons-grid-12">
+        <!-- Reason 1 -->
+        <div class="reason-card-container reveal-fade">
+          <div class="reason-card-inner">
+            <div class="reason-card-front">
+              <div class="reason-icon">😊</div>
+              <h3>Your Smile</h3>
+            </div>
+            <div class="reason-card-back">
+              <span class="heart-mini">❤️</span>
+              <p>It holds the power to brighten up my darkest days instantly. A pure ray of sunshine that warms my soul.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reason 2 -->
+        <div class="reason-card-container reveal-fade">
+          <div class="reason-card-inner">
+            <div class="reason-card-front">
+              <div class="reason-icon">🌸</div>
+              <h3>Your Kindness</h3>
+            </div>
+            <div class="reason-card-back">
+              <span class="heart-mini">❤️</span>
+              <p>You treat the world with such infinite softness. Your gentle nature makes me want to be a better person.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reason 3 -->
+        <div class="reason-card-container reveal-fade">
+          <div class="reason-card-inner">
+            <div class="reason-card-front">
+              <div class="reason-icon">⏳</div>
+              <h3>Your Patience</h3>
+            </div>
+            <div class="reason-card-back">
+              <span class="heart-mini">❤️</span>
+              <p>Handling this distance, my busy hours, and the waiting with such calming grace. You are my steady peace.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reason 4 -->
+        <div class="reason-card-container reveal-fade">
+          <div class="reason-card-inner">
+            <div class="reason-card-front">
+              <div class="reason-icon">✨</div>
+              <h3>Your Laugh</h3>
+            </div>
+            <div class="reason-card-back">
+              <span class="heart-mini">❤️</span>
+              <p>The most beautiful melody in existence. Hearing it over our calls fills my heart with bubbles of pure joy.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reason 5 -->
+        <div class="reason-card-container reveal-fade">
+          <div class="reason-card-inner">
+            <div class="reason-card-front">
+              <div class="reason-icon">🤝</div>
+              <h3>Your Support</h3>
+            </div>
+            <div class="reason-card-back">
+              <span class="heart-mini">❤️</span>
+              <p>You believe in me even when I struggle to believe in myself. Your faith is my constant strength.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reason 6 -->
+        <div class="reason-card-container reveal-fade">
+          <div class="reason-card-inner">
+            <div class="reason-card-front">
+              <div class="reason-icon">💝</div>
+              <h3>Your Heart</h3>
+            </div>
+            <div class="reason-card-back">
+              <span class="heart-mini">❤️</span>
+              <p>So full of love, empathy, and absolute purity. You love so deeply, and it is a gift to experience it.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reason 7 -->
+        <div class="reason-card-container reveal-fade">
+          <div class="reason-card-inner">
+            <div class="reason-card-front">
+              <div class="reason-icon">🌠</div>
+              <h3>Your Dreams</h3>
+            </div>
+            <div class="reason-card-back">
+              <span class="heart-mini">❤️</span>
+              <p>Your beautiful ambitions. Watching you speak about the future with shining eyes is my absolute favorite sight.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reason 8 -->
+        <div class="reason-card-container reveal-fade">
+          <div class="reason-card-inner">
+            <div class="reason-card-front">
+              <div class="reason-icon">☀️</div>
+              <h3>Your Positivity</h3>
+            </div>
+            <div class="reason-card-back">
+              <span class="heart-mini">❤️</span>
+              <p>You bring hope and light into every situation. Your optimism makes the world feel like a better place.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reason 9 -->
+        <div class="reason-card-container reveal-fade">
+          <div class="reason-card-inner">
+            <div class="reason-card-front">
+              <div class="reason-icon">👑</div>
+              <h3>Your Confidence</h3>
+            </div>
+            <div class="reason-card-back">
+              <span class="heart-mini">❤️</span>
+              <p>The quiet elegance and confidence you carry. You shine in your own unique, gorgeous way.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reason 10 -->
+        <div class="reason-card-container reveal-fade">
+          <div class="reason-card-inner">
+            <div class="reason-card-front">
+              <div class="reason-icon">🛡️</div>
+              <h3>Your Strength</h3>
+            </div>
+            <div class="reason-card-back">
+              <span class="heart-mini">❤️</span>
+              <p>How you handle challenges with grace and resilience. Your inner strength is absolutely beautiful.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reason 11 -->
+        <div class="reason-card-container reveal-fade">
+          <div class="reason-card-inner">
+            <div class="reason-card-front">
+              <div class="reason-icon">🔮</div>
+              <h3>Your Beautiful Soul</h3>
+            </div>
+            <div class="reason-card-back">
+              <span class="heart-mini">❤️</span>
+              <p>The core of who you are. Soft, empathetic, understanding, and incredibly warm. You are a treasure.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reason 12 -->
+        <div class="reason-card-container reveal-fade">
+          <div class="reason-card-inner">
+            <div class="reason-card-front">
+              <div class="reason-icon">💖</div>
+              <h3>Everything About You</h3>
+            </div>
+            <div class="reason-card-back">
+              <span class="heart-mini">❤️</span>
+              <p>From the crown of your head to the tips of your toes. I adore you fully, just the way you are.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: MEMORY WALL -->
+  <section class="section" id="memory-wall">
+    <div class="container">
+      <div class="section-title">
+        <p class="cursive-sub">Snapshots of Love</p>
+        <h2>Memory Wall</h2>
+      </div>
+      
+      <div class="memory-wall-pinterest">
+        <!-- Card 1 -->
+        <div class="glass-card wall-card reveal-fade">
+          <div class="wall-emoji">☕</div>
+          <h3>Lazy Sunday Coffee</h3>
+          <p>Remember that cold rainy Sunday we spent talking for hours over warm hazelnut coffee? We didn't do anything special, but it remains one of my absolute favorite memories.</p>
+          <div class="wall-footer">
+            <span class="tag">#SimpleMoments</span>
+            <span>2024</span>
+          </div>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="glass-card wall-card reveal-fade">
+          <div class="wall-emoji">🗺️</div>
+          <h3>Getting Lost Together</h3>
+          <p>We missed our train stop, ended up in a tiny unknown town, and ended up eating the best gelato ever in the pouring rain. Getting lost with you is always an adventure.</p>
+          <div class="wall-footer">
+            <span class="tag">#Adventures</span>
+            <span>2024</span>
+          </div>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="glass-card wall-card reveal-fade">
+          <div class="wall-emoji">🍿</div>
+          <h3>Midnight Movie Marathons</h3>
+          <p>Watching terrible horror films, eating way too much buttery popcorn, and laughing at the bad acting instead of being scared. Safe in your arms, always.</p>
+          <div class="wall-footer">
+            <span class="tag">#MovieNights</span>
+            <span>2023</span>
+          </div>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="glass-card wall-card reveal-fade">
+          <div class="wall-emoji">🌅</div>
+          <h3>Chasing Sunsets</h3>
+          <p>Sitting silently on the hilltop, holding hands, watching the sky turn pink and lavender. In that moment, I realized my favorite view would always be looking at you.</p>
+          <div class="wall-footer">
+            <span class="tag">#GoldenHour</span>
+            <span>2024</span>
+          </div>
+        </div>
+        
+        <!-- Card 5 -->
+        <div class="glass-card wall-card reveal-fade">
+          <div class="wall-emoji">🍰</div>
+          <h3>The Messy Baking Attempt</h3>
+          <p>Flour on our faces, batter on the ceiling, and cookies that ended up rock-hard. We failed as bakers but won as partners in crime.</p>
+          <div class="wall-footer">
+            <span class="tag">#KitchenChaos</span>
+            <span>2023</span>
+          </div>
+        </div>
+        
+        <!-- Card 6 -->
+        <div class="glass-card wall-card reveal-fade">
+          <div class="wall-emoji">🎁</div>
+          <h3>Surprise Hugs</h3>
+          <p>Those small, unexpected hugs from behind when I'm working, and how you squeeze tight just to let me know you're there. It makes my heart melt every time.</p>
+          <div class="wall-footer">
+            <span class="tag">#LoveGlow</span>
+            <span>2024</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: LOVE LETTER -->
+  <section class="section" id="letter">
+    <div class="container">
+      <div class="section-title">
+        <p class="cursive-sub">From My Soul to Yours</p>
+        <h2>Love Letter</h2>
+      </div>
+      
+      <div class="envelope-wrapper reveal-fade">
+        <div class="envelope" id="envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-pocket"></div>
+          <div class="wax-seal" id="wax-seal">❤️</div>
+          
+          <!-- Lined Handwritten Paper -->
+          <div class="letter-paper" id="letter-paper">
+            <button class="letter-paper-close" id="letter-close" aria-label="Close Letter">✕</button>
+            <div class="letter-text" id="letter-text">My Dearest,
+
+To the one who holds my heart,
+
+Happy Birthday! 
+
+Writing this letter is my small attempt to put into words what my heart feels every single day. Before you came into my life, the world was beautiful, but with you, it has become magical. You have a way of filling every ordinary moment with soft light and pure happiness.
+
+Thank you for your warmth, your patience, and your endless kindness. Thank you for being my sanctuary and my biggest inspiration. 
+
+Today, as we celebrate you, I want you to know how deeply you are loved, how cherished your existence is, and how much I cherish every moment we share across the distance.
+
+You deserve all the magic, all the smiles, and all the love this universe can offer.
+
+Forever and always,
+Your Favorite Person ❤️</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: OUR PENDING THINGS -->
+  <section class="section" id="dreams">
+    <div class="container">
+      <div class="section-title">
+        <p class="cursive-sub">Waiting for the day we meet</p>
+        <h2>Our Pending Things</h2>
+      </div>
+      
+      <div class="dreams-container">
+        <!-- Bubble 1 -->
+        <div class="dream-bubble reveal-fade">
+          <div class="dream-icon">🤝</div>
+          <span>Our First Meeting</span>
+        </div>
+        
+        <!-- Bubble 2 -->
+        <div class="dream-bubble reveal-fade">
+          <div class="dream-icon">🌅</div>
+          <span>Watching Sunsets</span>
+        </div>
+        
+        <!-- Bubble 3 -->
+        <div class="dream-bubble reveal-fade">
+          <div class="dream-icon">✈️</div>
+          <span>Travelling Together</span>
+        </div>
+        
+        <!-- Bubble 4 -->
+        <div class="dream-bubble reveal-fade">
+          <div class="dream-icon">🎂</div>
+          <span>Celebrating Together</span>
+        </div>
+        
+        <!-- Bubble 5 -->
+        <div class="dream-bubble reveal-fade">
+          <div class="dream-icon">👫</div>
+          <span>Holding Hands</span>
+        </div>
+        
+        <!-- Bubble 6 -->
+        <div class="dream-bubble reveal-fade">
+          <div class="dream-icon">🤗</div>
+          <span>Our First Hug</span>
+        </div>
+
+        <!-- Bubble 7 -->
+        <div class="dream-bubble reveal-fade">
+          <div class="dream-icon">💬</div>
+          <span>Real Conversations</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: DISTANCE & CONNECTION -->
+  <section class="section" id="distance">
+    <div class="container">
+      <div class="section-title">
+        <p class="cursive-sub">Two Hearts, One Connection</p>
+        <h2>Distance and Connection</h2>
+      </div>
+      
+      <div class="distance-map-container reveal-fade">
+        <canvas id="distance-canvas"></canvas>
+        <div class="distance-labels">
+          <div class="location-label location-me">
+            <span class="loc-heart">❤️</span>
+            <span class="loc-name">My Heart</span>
+          </div>
+          <div class="location-label location-her">
+            <span class="loc-heart">❤️</span>
+            <span class="loc-name">Her Heart</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="distance-quote-box reveal-fade">
+        <p class="distance-quote">"Distance only measures miles, never love."</p>
+        <p class="distance-subtext">No matter the oceans between us, you are in every beat of my heart. The connection never breaks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CELEBRATION SECTION -->
+  <section class="section final-section" id="final">
+    <div class="container">
+      
+      <div class="final-interactive-container">
+        
+        <!-- Slicing Stage -->
+        <div class="cake-cutting-stage" id="cake-cutting-stage">
+          <!-- Canvas for 3D Cake cutting -->
+          <div class="cutting-cake-container-3d" id="cutting-cake-container-3d">
+            <canvas id="cutting-cake-canvas" class="cake-canvas"></canvas>
+            <div class="cutting-knife-line" id="cutting-knife-line"></div>
+          </div>
+          
+          <!-- SVG Fallback Cake Cutting Animation -->
+          <div class="fallback-svg-cake-wrapper" id="fallback-svg-cake-wrapper" style="display: none;">
+            <svg viewBox="0 0 400 350" width="100%" height="100%" class="svg-cake-element" id="svg-cake-element">
+              <!-- Definitions for gradients -->
+              <defs>
+                <linearGradient id="cake-pink" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#FFD6E0" />
+                  <stop offset="100%" stop-color="#F8AFCB" />
+                </linearGradient>
+                <linearGradient id="cake-cream" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#FFFDFC" />
+                  <stop offset="100%" stop-color="#FFEBEF" />
+                </linearGradient>
+                <linearGradient id="gold-grad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#FFE8A3" />
+                  <stop offset="50%" stop-color="#D4AF37" />
+                  <stop offset="100%" stop-color="#AA820A" />
+                </linearGradient>
+                <filter id="glow-svg" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+              
+              <!-- STAND -->
+              <path d="M 120 280 L 280 280 L 290 290 L 110 290 Z" fill="url(#gold-grad)" />
+              <rect x="180" y="290" width="40" height="25" fill="url(#gold-grad)" />
+              <ellipse cx="200" cy="315" rx="55" ry="12" fill="url(#gold-grad)" />
+              
+              <!-- LEFT HALF GROUP -->
+              <g class="svg-cake-left" id="svg-cake-left">
+                <!-- Stand Left Plate -->
+                <path d="M 110 280 A 90 15 0 0 0 200 280 L 200 270 L 110 270 Z" fill="url(#gold-grad)" />
+                <ellipse cx="155" cy="278" rx="45" ry="8" fill="url(#gold-grad)" />
+                <!-- Tier 1 Left -->
+                <path d="M 130 220 L 200 220 L 200 270 L 130 270 Z" fill="url(#cake-pink)" />
+                <!-- Tier 2 Left -->
+                <path d="M 150 170 L 200 170 L 200 220 L 150 220 Z" fill="url(#cake-cream)" />
+                <!-- Tier 3 Left -->
+                <path d="M 165 130 L 200 130 L 200 170 L 165 170 Z" fill="url(#cake-pink)" />
+                <!-- Left Candle -->
+                <rect x="175" y="90" width="8" height="40" fill="#FFF" rx="2" />
+                <rect x="175" y="95" width="8" height="6" fill="#F8AFCB" />
+                <rect x="175" y="110" width="8" height="6" fill="#F8AFCB" />
+                <!-- Left Wick -->
+                <line x1="179" y1="90" x2="179" y2="84" stroke="#4D3319" stroke-width="2" />
+                <!-- Left Flame -->
+                <path class="svg-flame" d="M 179 84 C 174 80, 174 70, 179 62 C 184 70, 184 80, 179 84 Z" fill="#FFB84D" filter="url(#glow-svg)" id="svg-flame-1" />
+              </g>
+
+              <!-- RIGHT HALF GROUP -->
+              <g class="svg-cake-right" id="svg-cake-right">
+                <!-- Stand Right Plate -->
+                <path d="M 200 280 A 90 15 0 0 0 290 280 L 290 270 L 200 270 Z" fill="url(#gold-grad)" />
+                <ellipse cx="245" cy="278" rx="45" ry="8" fill="url(#gold-grad)" />
+                <!-- Tier 1 Right -->
+                <path d="M 200 220 L 270 220 L 270 270 L 200 270 Z" fill="url(#cake-pink)" />
+                <!-- Tier 2 Right -->
+                <path d="M 200 170 L 250 170 L 250 220 L 200 220 Z" fill="url(#cake-cream)" />
+                <!-- Tier 3 Right -->
+                <path d="M 200 130 L 235 130 L 235 170 L 200 170 Z" fill="url(#cake-pink)" />
+                <!-- Right Candle -->
+                <rect x="215" y="90" width="8" height="40" fill="#FFF" rx="2" />
+                <rect x="215" y="95" width="8" height="6" fill="#D4AF37" />
+                <rect x="215" y="110" width="8" height="6" fill="#D4AF37" />
+                <!-- Right Wick -->
+                <line x1="219" y1="90" x2="219" y2="84" stroke="#4D3319" stroke-width="2" />
+                <!-- Right Flame -->
+                <path class="svg-flame" d="M 219 84 C 214 80, 214 70, 219 62 C 224 70, 224 80, 219 84 Z" fill="#FFB84D" filter="url(#glow-svg)" id="svg-flame-2" />
+              </g>
+
+              <!-- KNIFE (Hidden by default, as the main hand overlay handles knife graphics now) -->
+              <g class="svg-knife" id="svg-knife" style="display: none;">
+                <rect x="198" y="-60" width="4" height="130" fill="#E2E8F0" rx="1" />
+                <path d="M 198 70 L 198 120 L 202 110 L 202 70 Z" fill="url(#gold-grad)" />
+                <rect x="196" y="-90" width="8" height="35" fill="#7D5D68" rx="2" />
+              </g>
+            </svg>
+          </div>
+          
+          <!-- Hand Overlay (shared for both WebGL and SVG modes) -->
+          <div class="cake-cutting-hand-overlay" id="cake-cutting-hand-overlay" style="display: none;">
+            <svg viewBox="0 0 400 400" width="100%" height="100%" class="hand-svg-element">
+              <defs>
+                <linearGradient id="knife-gold" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#FFE8A3" />
+                  <stop offset="40%" stop-color="#D4AF37" />
+                  <stop offset="100%" stop-color="#AA820A" />
+                </linearGradient>
+                <filter id="hand-shadow" x="-10%" y="-10%" width="130%" height="130%">
+                  <feDropShadow dx="2" dy="5" stdDeviation="4" flood-opacity="0.3"/>
+                </filter>
+              </defs>
+              <!-- The Hand holding Knife illustration -->
+              <g filter="url(#hand-shadow)">
+                <!-- Knife Blade -->
+                <path d="M 195 110 L 205 110 L 201 230 L 199 230 Z" fill="url(#knife-gold)" />
+                <path d="M 199 110 L 201 110 L 201 230 L 199 230 Z" fill="#FFF" opacity="0.5" /> <!-- Blade shine -->
+                <!-- Guard -->
+                <rect x="188" y="104" width="24" height="6" fill="#D4AF37" rx="1.5" />
+                <!-- Handle -->
+                <rect x="194" y="40" width="12" height="64" fill="#604751" rx="2" />
+                
+                <!-- Arm Skin -->
+                <path d="M 330 0 L 250 50 C 248 52, 240 52, 238 50 L 220 30 L 270 0 Z" fill="#FFE0D8" />
+                <!-- Cuff / Cufflink -->
+                <path d="M 330 0 L 270 40 L 255 10 L 300 0 Z" fill="#FFF" opacity="0.9" />
+                
+                <!-- Hand knuckles / wrist -->
+                <path d="M 250 50 L 210 65 L 218 110 L 238 90 Z" fill="#FFE0D8" />
+                
+                <!-- Fingers wrapped over handle -->
+                <!-- Index -->
+                <rect x="180" y="52" width="34" height="11" rx="5.5" fill="#FFE0D8" transform="rotate(-3, 197, 57)" />
+                <path d="M 183 52 C 183 52, 180 57, 183 63" stroke="#FFF" stroke-width="1.5" fill="none" opacity="0.6" /> <!-- Finger highlight -->
+                
+                <!-- Middle -->
+                <rect x="180" y="65" width="34" height="11" rx="5.5" fill="#FFE0D8" transform="rotate(-3, 197, 70)" />
+                
+                <!-- Ring -->
+                <rect x="181" y="78" width="32" height="11" rx="5.5" fill="#FFE0D8" transform="rotate(-3, 197, 83)" />
+                
+                <!-- Pinky -->
+                <rect x="183" y="91" width="28" height="11" rx="5.5" fill="#FFE0D8" transform="rotate(-3, 197, 96)" />
+                
+                <!-- Thumb -->
+                <path d="M 218 80 C 214 83, 206 90, 208 97 C 210 102, 216 100, 220 94 Z" fill="#FFE0D8" />
+                
+                <!-- Ribbon cuff wrapped around wrist -->
+                <path d="M 245 42 C 240 45, 242 55, 250 52 C 255 50, 250 40, 245 42 Z" fill="#F8AFCB" opacity="0.75" />
+              </g>
+            </svg>
+          </div>
+          
+          <!-- External Custom Video Player (triggers if user uploads assets/videos/cake_cut.mp4) -->
+          <div class="external-video-wrapper glass-card" id="external-video-wrapper" style="display: none;">
+            <video id="external-video" playsinline controls preload="auto" poster="assets/images/cake_preview.png"></video>
+            <div class="video-overlay-text">Our Special Ceremony 🎂</div>
+          </div>
+        </div>
+
+        <div class="final-messages-container" id="final-messages-container">
+          <!-- Multi-step message sequence -->
+          <div class="final-intro-messages" id="final-intro-messages">
+            <p class="intro-msg active" id="intro-msg-1">I wish I could celebrate this birthday beside you...</p>
+            <p class="intro-msg" id="intro-msg-2">But until that day comes...</p>
+            <p class="intro-msg" id="intro-msg-3">The least I can do is celebrate with you from here.</p>
+          </div>
+          
+          <div class="final-wishes-messages" id="final-wishes-messages" style="display: none;">
+            <h2 class="final-birthday-title cursive-main">Happy Birthday, My Love ❤️</h2>
+            <p class="wish-msg">Even though we're miles apart...</p>
+            <p class="wish-msg">My heart is celebrating every moment with you.</p>
+            <p class="wish-msg">I can't wait for the day when we celebrate together, not through a screen, but side by side.</p>
+            <h3 class="final-love-you">I love you.</h3>
+          </div>
+        </div>
+        
+        <div class="forever-btn-box" id="final-action-box">
+          <button class="glass-btn glass-btn-gold" id="cut-cake-btn">🎂 Cut Our Birthday Cake</button>
+        </div>
+
+        <div class="final-heart-pulsate" id="final-heart-pulsate" style="display: none;">
+          <span class="large-glowing-heart" id="large-glowing-heart">❤️</span>
+          <span class="forever-text">Forever & Always</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Lightbox Modal Overlay -->
+  <div class="lightbox-overlay" id="lightbox-overlay">
+    <button class="lightbox-close" id="lightbox-close-btn" aria-label="Close Lightbox">✕</button>
+    <div class="lightbox-container">
+      <div class="lightbox-img-box" id="lightbox-img-box">
+        <!-- Render placeholder or image -->
+      </div>
+      <div class="lightbox-caption">
+        <h3 id="lightbox-title">Photo Title</h3>
+        <p id="lightbox-desc">Photo description goes here.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="scripts/three-cake.js"></script>
+  <script type="module" src="scripts/effects.js"></script>
+  <script type="module" src="scripts/distance-map.js"></script>
+  <script type="module" src="scripts/music-player.js"></script>
+  <script type="module" src="scripts/main.js"></script>
+</body>
+</html>
