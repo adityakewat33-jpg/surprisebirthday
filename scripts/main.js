@@ -871,11 +871,6 @@ function initBirthdayLock() {
   const lockScreen = document.getElementById('birthday-lock-screen');
   if (!lockScreen) return;
   
-  // ==========================================
-  // NOTE FOR TESTING:
-  // To test and bypass this lock screen immediately, change the date below
-  // to a past date (for example, '2026-08-01T00:00:00').
-  // ==========================================
   const targetDate = new Date('2026-08-17T00:00:00');
   
   const daysEl = document.getElementById('lock-days');
@@ -883,17 +878,44 @@ function initBirthdayLock() {
   const minsEl = document.getElementById('lock-mins');
   const secsEl = document.getElementById('lock-secs');
   
-  // If we are already past the birthday date, hide the lock overlay immediately
-  if (new Date() >= targetDate) {
-    lockScreen.style.display = 'none';
-    return;
-  }
+  let timeOffset = 0;
+  let isFetchingTime = true;
   
-  // Lock scroll bar interactions
-  document.body.style.overflow = 'hidden';
+  // Fetch true server date from response headers to block device clock manipulation
+  fetch(window.location.href, { method: 'HEAD' })
+    .then(res => {
+      const serverDateStr = res.headers.get('date');
+      if (serverDateStr) {
+        const serverDate = new Date(serverDateStr);
+        const localDate = new Date();
+        timeOffset = serverDate.getTime() - localDate.getTime();
+        
+        // If server date has passed target date, unlock immediately
+        if (serverDate >= targetDate) {
+          lockScreen.style.display = 'none';
+          document.body.style.overflow = '';
+          return;
+        }
+      }
+      isFetchingTime = false;
+      document.body.style.overflow = 'hidden'; // Keep body locked
+      updateLockCountdown();
+    })
+    .catch(() => {
+      // Offline / Error fallback: use local system clock
+      isFetchingTime = false;
+      if (new Date() >= targetDate) {
+        lockScreen.style.display = 'none';
+        return;
+      }
+      document.body.style.overflow = 'hidden';
+      updateLockCountdown();
+    });
   
   function updateLockCountdown() {
-    const now = new Date();
+    if (isFetchingTime) return;
+
+    const now = new Date(new Date().getTime() + timeOffset);
     const diffMs = targetDate - now;
     
     // Once target date is hit
@@ -925,6 +947,5 @@ function initBirthdayLock() {
     if (secsEl) secsEl.innerText = String(secs).padStart(2, '0');
   }
   
-  updateLockCountdown();
   const lockInterval = setInterval(updateLockCountdown, 1000);
 }
