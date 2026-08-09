@@ -29,6 +29,36 @@
 </head>
 <body>
 
+  <!-- BIRTHDAY GATEKEEPER LOCK SCREEN -->
+  <div id="birthday-lock-screen" class="lock-screen-overlay">
+    <div class="lock-card glass-card-pink text-center">
+      <div class="lock-heart-pulsate">❤️</div>
+      <p class="cursive-sub lock-subtitle">A Beautiful Journey Through Time</p>
+      <h1 class="lock-title">Your Birthday Surprise Unlocks In...</h1>
+      
+      <div class="lock-countdown-container" id="lock-timer">
+        <div class="lock-timer-unit">
+          <span class="lock-num" id="lock-days">00</span>
+          <span class="lock-lbl">Days</span>
+        </div>
+        <div class="lock-timer-unit">
+          <span class="lock-num" id="lock-hours">00</span>
+          <span class="lock-lbl">Hours</span>
+        </div>
+        <div class="lock-timer-unit">
+          <span class="lock-num" id="lock-mins">00</span>
+          <span class="lock-lbl">Mins</span>
+        </div>
+        <div class="lock-timer-unit">
+          <span class="lock-num" id="lock-secs">00</span>
+          <span class="lock-lbl">Secs</span>
+        </div>
+      </div>
+      
+      <p class="lock-footer-text">Waiting for August 17, 2026 ✨</p>
+    </div>
+  </div>
+
   <!-- Full-Page Particle Background -->
   <canvas id="effects-canvas"></canvas>
 
@@ -77,6 +107,39 @@
         <h2>Our Journey</h2>
       </div>
       
+      <!-- Count Up Timer: Since Happy Diwali 2024 -->
+      <div class="countup-timer-wrapper glass-card reveal-fade">
+        <p class="timer-tagline cursive-sub">Every second of talking to you has been a blessing</p>
+        <h3 class="timer-title">Time Since We First Started Talking 💬</h3>
+        <div class="timer-digits-container" id="countup-timer">
+          <div class="timer-unit">
+            <span class="timer-num" id="timer-years">0</span>
+            <span class="timer-lbl">Years</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-num" id="timer-months">0</span>
+            <span class="timer-lbl">Months</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-num" id="timer-days">00</span>
+            <span class="timer-lbl">Days</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-num" id="timer-hours">00</span>
+            <span class="timer-lbl">Hours</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-num" id="timer-mins">00</span>
+            <span class="timer-lbl">Mins</span>
+          </div>
+          <div class="timer-unit">
+            <span class="timer-num" id="timer-secs">00</span>
+            <span class="timer-lbl">Secs</span>
+          </div>
+        </div>
+        <p class="timer-date-note">Since wished "Happy Diwali" on <strong>October 31, 2024</strong> ✨</p>
+      </div>
+
       <div class="timeline-wrapper">
         <div class="timeline-line"></div>
         <div class="timeline-line-progress" id="timeline-progress"></div>

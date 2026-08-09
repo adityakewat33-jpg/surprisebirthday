@@ -62,6 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initDreamBubbles();
   initFinalCelebration();
   handlePlaceholderImages();
+  initCountUpTimer();
+  initBirthdayLock();
 });
 
 // --- SCROLL REVEALS (Intersection Observer) ---
@@ -774,4 +776,133 @@ function handlePlaceholderImages() {
       img.dispatchEvent(event);
     }
   });
+}
+
+// --- COUNT UP TIMER (Diwali 2024) ---
+// Calculates calendar years, months, and exact fractional days/hours/minutes/seconds since wished "Happy Diwali" (Oct 31, 2024)
+function initCountUpTimer() {
+  const startDate = new Date('2024-10-31T00:00:00'); // Diwali 2024 Start Date
+  
+  const yearsEl = document.getElementById('timer-years');
+  const monthsEl = document.getElementById('timer-months');
+  const daysEl = document.getElementById('timer-days');
+  const hoursEl = document.getElementById('timer-hours');
+  const minsEl = document.getElementById('timer-mins');
+  const secsEl = document.getElementById('timer-secs');
+  
+  if (!yearsEl) return;
+  
+  function updateTimer() {
+    const now = new Date();
+    
+    // Calendar calculation: subtract years & months
+    let years = now.getFullYear() - startDate.getFullYear();
+    let months = now.getMonth() - startDate.getMonth();
+    
+    // Adjust month boundary
+    let tempDate = new Date(startDate.getTime());
+    tempDate.setFullYear(now.getFullYear());
+    tempDate.setMonth(startDate.getMonth() + months);
+    
+    if (tempDate > now) {
+      months--;
+      tempDate = new Date(startDate.getTime());
+      tempDate.setFullYear(now.getFullYear());
+      tempDate.setMonth(startDate.getMonth() + months);
+    }
+    
+    if (months < 0) {
+      months += 12;
+      years--;
+      tempDate = new Date(startDate.getTime());
+      tempDate.setFullYear(now.getFullYear());
+      tempDate.setMonth(startDate.getMonth() + months);
+    }
+    
+    // Exact delta of remaining ms from the adjusted date
+    const diffMs = now - tempDate;
+    const totalSecs = Math.floor(diffMs / 1000);
+    
+    const secs = totalSecs % 60;
+    const totalMins = Math.floor(totalSecs / 60);
+    const mins = totalMins % 60;
+    const totalHours = Math.floor(totalMins / 60);
+    const hours = totalHours % 24;
+    const days = Math.floor(totalHours / 24);
+    
+    // Write digits to DOM
+    yearsEl.innerText = years;
+    monthsEl.innerText = months;
+    daysEl.innerText = String(days).padStart(2, '0');
+    hoursEl.innerText = String(hours).padStart(2, '0');
+    minsEl.innerText = String(mins).padStart(2, '0');
+    secsEl.innerText = String(secs).padStart(2, '0');
+  }
+  
+  updateTimer();
+  setInterval(updateTimer, 1000);
+}
+
+// --- BIRTHDAY LOCK SCREEN GATEKEEPER ---
+// Blocks body scroll, counts down to August 17, 2026, and slides/fades out elastically on unlock.
+function initBirthdayLock() {
+  const lockScreen = document.getElementById('birthday-lock-screen');
+  if (!lockScreen) return;
+  
+  // ==========================================
+  // NOTE FOR TESTING:
+  // To test and bypass this lock screen immediately, change the date below
+  // to a past date (for example, '2026-08-01T00:00:00').
+  // ==========================================
+  const targetDate = new Date('2026-08-17T00:00:00');
+  
+  const daysEl = document.getElementById('lock-days');
+  const hoursEl = document.getElementById('lock-hours');
+  const minsEl = document.getElementById('lock-mins');
+  const secsEl = document.getElementById('lock-secs');
+  
+  // If we are already past the birthday date, hide the lock overlay immediately
+  if (new Date() >= targetDate) {
+    lockScreen.style.display = 'none';
+    return;
+  }
+  
+  // Lock scroll bar interactions
+  document.body.style.overflow = 'hidden';
+  
+  function updateLockCountdown() {
+    const now = new Date();
+    const diffMs = targetDate - now;
+    
+    // Once target date is hit
+    if (diffMs <= 0) {
+      clearInterval(lockInterval);
+      document.body.style.overflow = ''; // Unlock body scroll
+      lockScreen.classList.add('unlocked');
+      
+      // Clear element from DOM after transition (1.5s)
+      setTimeout(() => {
+        lockScreen.remove();
+      }, 1500);
+      return;
+    }
+    
+    // Breakdown milliseconds
+    const totalSecs = Math.floor(diffMs / 1000);
+    const secs = totalSecs % 60;
+    const totalMins = Math.floor(totalSecs / 60);
+    const mins = totalMins % 60;
+    const totalHours = Math.floor(totalMins / 60);
+    const hours = totalHours % 24;
+    const days = Math.floor(totalHours / 24);
+    
+    // Render to elements
+    if (daysEl) daysEl.innerText = String(days).padStart(2, '0');
+    if (hoursEl) hoursEl.innerText = String(hours).padStart(2, '0');
+    if (minsEl) minsEl.innerText = String(mins).padStart(2, '0');
+    if (secsEl) secsEl.innerText = String(secs).padStart(2, '0');
+  }
+  
+  updateLockCountdown();
+  const lockInterval = setInterval(updateLockCountdown, 1000);
 }
