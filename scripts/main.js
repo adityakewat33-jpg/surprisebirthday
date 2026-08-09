@@ -876,7 +876,7 @@ function initBirthdayLock() {
   // To test and bypass this lock screen immediately, change the date below
   // to a past date (for example, '2026-08-01T00:00:00').
   // ==========================================
-  const targetDate = new Date('2026-08-01T00:00:00'); // Temporarily bypassed locally for editing
+  const targetDate = new Date('2026-08-17T00:00:00');
   
   const daysEl = document.getElementById('lock-days');
   const hoursEl = document.getElementById('lock-hours');
