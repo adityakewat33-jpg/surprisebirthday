@@ -502,12 +502,19 @@ function initFinalCelebration() {
     if (hasCustomVideo) {
       const videoWrapper = document.getElementById('external-video-wrapper');
       const video = document.getElementById('external-video');
+      const videoPreview = document.getElementById('external-video-preview');
+      const videoOverlayText = document.getElementById('video-overlay-text');
       
       // Hide 3D/SVG cake objects to clear the stage for video playback
       if (container3d) container3d.style.display = 'none';
       if (wrapperSvg) wrapperSvg.style.display = 'none';
 
       if (videoWrapper && video) {
+        // Swap preview image with video player on click
+        if (videoPreview) videoPreview.style.display = 'none';
+        if (videoOverlayText) videoOverlayText.style.display = 'none';
+        video.style.display = 'block';
+
         videoWrapper.style.display = 'flex';
         videoWrapper.offsetHeight; // Force reflow
         videoWrapper.classList.add('visible');
