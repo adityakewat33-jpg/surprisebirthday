@@ -870,7 +870,15 @@ function initCountUpTimer() {
 function initBirthdayLock() {
   const lockScreen = document.getElementById('birthday-lock-screen');
   if (!lockScreen) return;
-  
+
+  // Automatically bypass lock screen for local previewing/development
+  const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  if (isLocalhost) {
+    lockScreen.style.display = 'none';
+    document.body.style.overflow = '';
+    return;
+  }
+
   const targetDate = new Date('2026-08-17T00:00:00');
   
   const daysEl = document.getElementById('lock-days');
