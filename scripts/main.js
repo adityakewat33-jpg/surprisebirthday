@@ -812,40 +812,45 @@ function initCountUpTimer() {
   function updateTimer() {
     const now = new Date();
     
-    // Calendar calculation: subtract years & months
+    // Direct subtraction of calendar units
     let years = now.getFullYear() - startDate.getFullYear();
     let months = now.getMonth() - startDate.getMonth();
+    let days = now.getDate() - startDate.getDate();
+    let hours = now.getHours() - startDate.getHours();
+    let mins = now.getMinutes() - startDate.getMinutes();
+    let secs = now.getSeconds() - startDate.getSeconds();
     
-    // Adjust month boundary
-    let tempDate = new Date(startDate.getTime());
-    tempDate.setFullYear(now.getFullYear());
-    tempDate.setMonth(startDate.getMonth() + months);
-    
-    if (tempDate > now) {
-      months--;
-      tempDate = new Date(startDate.getTime());
-      tempDate.setFullYear(now.getFullYear());
-      tempDate.setMonth(startDate.getMonth() + months);
+    // Normalize seconds
+    if (secs < 0) {
+      secs += 60;
+      mins--;
     }
     
+    // Normalize minutes
+    if (mins < 0) {
+      mins += 60;
+      hours--;
+    }
+    
+    // Normalize hours
+    if (hours < 0) {
+      hours += 24;
+      days--;
+    }
+    
+    // Normalize days
+    if (days < 0) {
+      // Get the number of days in the previous month of now
+      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+      days += prevMonth.getDate();
+      months--;
+    }
+    
+    // Normalize months
     if (months < 0) {
       months += 12;
       years--;
-      tempDate = new Date(startDate.getTime());
-      tempDate.setFullYear(now.getFullYear());
-      tempDate.setMonth(startDate.getMonth() + months);
     }
-    
-    // Exact delta of remaining ms from the adjusted date
-    const diffMs = now - tempDate;
-    const totalSecs = Math.floor(diffMs / 1000);
-    
-    const secs = totalSecs % 60;
-    const totalMins = Math.floor(totalSecs / 60);
-    const mins = totalMins % 60;
-    const totalHours = Math.floor(totalMins / 60);
-    const hours = totalHours % 24;
-    const days = Math.floor(totalHours / 24);
     
     // Write digits to DOM
     yearsEl.innerText = years;
