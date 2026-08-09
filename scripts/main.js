@@ -872,7 +872,10 @@ function initBirthdayLock() {
   if (!lockScreen) return;
 
   // Automatically bypass lock screen for local previewing/development
-  const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+  const isLocalhost = window.location.hostname === 'localhost' || 
+                      window.location.hostname === '127.0.0.1' || 
+                      window.location.hostname === '::1' || 
+                      window.location.protocol === 'file:';
   if (isLocalhost) {
     lockScreen.style.display = 'none';
     document.body.style.overflow = '';
