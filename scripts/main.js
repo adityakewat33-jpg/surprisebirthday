@@ -752,28 +752,38 @@ function handlePlaceholderImages() {
   const images = document.querySelectorAll('.photo-placeholder img, .today-image-card img');
   
   images.forEach((img) => {
-    // If the image fails to load (either doesn't exist, is a 0-byte file, or 404s)
-    img.addEventListener('error', () => {
-      img.style.display = 'none'; // Hide broken image symbol
-      
-      const parent = img.parentElement;
+    const parent = img.parentElement;
+    const status = parent ? parent.querySelector('.photo-status') : null;
+
+    const handleSuccess = () => {
       if (parent) {
-        // Add styling indicator
+        parent.classList.add('image-loaded');
+        if (status) status.style.display = 'none';
+      }
+    };
+
+    const handleError = () => {
+      img.style.display = 'none'; // Hide broken image symbol
+      if (parent) {
         parent.classList.add('broken-image-fallback');
-        
-        // Remove existing text status if any, and place a cute heart/emoji
-        const status = parent.querySelector('.photo-status');
         if (status) {
+          status.style.display = ''; // Make sure it's visible if it was hidden
           status.style.background = 'rgba(255, 255, 255, 0.8)';
           status.style.color = '#A8647D';
         }
       }
-    });
+    };
+
+    img.addEventListener('load', handleSuccess);
+    img.addEventListener('error', handleError);
     
-    // Trigger error event manually if the image src is empty or has 0 bytes width
-    if (img.complete && img.naturalWidth === 0) {
-      const event = new Event('error');
-      img.dispatchEvent(event);
+    // Check if the image is already loaded/cached by browser
+    if (img.complete) {
+      if (img.naturalWidth > 0) {
+        handleSuccess();
+      } else {
+        handleError();
+      }
     }
   });
 }
