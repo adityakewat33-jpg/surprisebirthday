@@ -68,6 +68,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- SCROLL REVEALS (Intersection Observer) ---
 function initScrollReveals() {
+  // Stagger children inside grids automatically
+  const containers = document.querySelectorAll('.photo-grid-centered, .reasons-grid-12, .memory-wall-pinterest');
+  containers.forEach(container => {
+    const children = container.children;
+    Array.from(children).forEach((child, index) => {
+      if (!child.classList.contains('reveal-fade')) {
+        child.classList.add('reveal-fade');
+      }
+      child.style.transitionDelay = `${index * 60}ms`;
+    });
+  });
+
   const revealElements = document.querySelectorAll('.reveal-fade');
   
   const observer = new IntersectionObserver((entries) => {
@@ -77,8 +89,8 @@ function initScrollReveals() {
       }
     });
   }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px' // Trigger slightly before element hits viewport
+    threshold: 0.05,
+    rootMargin: '0px 0px -30px 0px' // Trigger slightly before element hits viewport
   });
 
   revealElements.forEach((el) => observer.observe(el));
@@ -109,7 +121,7 @@ function initTimelineScroll() {
     // Activate timeline dots and cards as they enter middle screen
     timelineItems.forEach((item) => {
       const itemRect = item.getBoundingClientRect();
-      if (itemRect.top < windowHeight * 0.6) {
+      if (itemRect.top < windowHeight / 2) {
         item.classList.add('active');
       } else {
         item.classList.remove('active');
@@ -293,7 +305,7 @@ function initDreamBubbles() {
   const bubbles = document.querySelectorAll('.dream-bubble');
   let time = 0;
 
-  // Simple sin/cos floating translation loops
+  // Simple sin/cos floating translation loops using CSS variables to avoid hover/active overrides
   function floatLoop() {
     time += 0.02;
     bubbles.forEach((bubble, idx) => {
@@ -301,8 +313,9 @@ function initDreamBubbles() {
       const offsetY = Math.cos(time * 0.8 + idx * 2.0) * 15;
       const angle = Math.sin(time * 0.3 + idx) * 3;
       
-      // Retain hover scale override if hovered
-      bubble.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0) rotate(${angle}deg)`;
+      bubble.style.setProperty('--drift-x', `${offsetX}px`);
+      bubble.style.setProperty('--drift-y', `${offsetY}px`);
+      bubble.style.setProperty('--drift-angle', `${angle}deg`);
     });
     requestAnimationFrame(floatLoop);
   }

@@ -986,6 +986,7 @@ body {
               inset -10px -10px 20px rgba(233, 213, 255, 0.2),
               inset 10px 10px 20px rgba(255, 255, 255, 0.4);
   cursor: pointer;
+  transform: translate3d(var(--drift-x, 0px), var(--drift-y, 0px), 0) rotate(var(--drift-angle, 0deg));
   transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
               box-shadow 0.6s ease;
   position: relative;
@@ -1004,10 +1005,14 @@ body {
 }
 
 .dream-bubble:hover {
-  transform: translateY(-12px) scale(1.1);
+  transform: translate3d(var(--drift-x, 0px), var(--drift-y, 0px), 0) rotate(var(--drift-angle, 0deg)) translateY(-12px) scale(1.1);
   box-shadow: 0 20px 40px -10px rgba(168, 85, 247, 0.35), 
               inset -10px -10px 20px rgba(233, 213, 255, 0.3),
               inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+}
+
+.dream-bubble:active {
+  transform: translate3d(var(--drift-x, 0px), var(--drift-y, 0px), 0) rotate(var(--drift-angle, 0deg)) scale(0.92) !important;
 }
 
 .dream-icon {
@@ -1342,8 +1347,8 @@ body {
 /* Scroll reveal helper classes */
 .reveal-fade {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(35px) scale(0.96);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .reveal-fade.revealed {
@@ -1922,6 +1927,30 @@ body {
   .lock-lbl {
     font-size: 0.65rem;
   }
+}
+
+/* Custom mobile spring active tap feedback */
+.btn-primary,
+.music-player-container,
+.today-image-card,
+.photo-placeholder,
+.wall-card,
+.reasons-card,
+.floating-bubble,
+.heart-btn,
+.envelope-wrapper {
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease, opacity 0.3s ease;
+}
+.btn-primary:active,
+.music-player-container:active,
+.today-image-card:active,
+.photo-placeholder:active,
+.wall-card:active,
+.reasons-card:active,
+.floating-bubble:active,
+.heart-btn:active,
+.envelope-wrapper:active {
+  transform: scale(0.94) translateY(2px) !important;
 }
 
 /* Reduced Motion Override */
